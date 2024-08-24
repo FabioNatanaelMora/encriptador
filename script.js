@@ -42,3 +42,9 @@ function desencriptar(stringDesencriptado){
     }
     return stringDesencriptado
 }
+const btnCopiar=document.querySelector(".btn-copiar");
+    btnCopiar.addEventListener("click", copiar = ()=>{
+        var contenido = document.querySelector(".texto-resultado").textContent;
+        navigator.clipboard.writeText(contenido);
+        console.log("Hola");
+    })
