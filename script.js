@@ -14,9 +14,11 @@ function btnEncriptar(){
     mensaje.style.backgroundImage="none";
 }
 function btnDesencriptar(){
-    const textEncriptado = desencriptar(textArea.value);
-    mensaje.value = textEncriptado;
+    const textDesencriptado = desencriptar(textArea.value);
+    mensaje.value = textDesencriptado;
+    document.querySelector("texto-resultado").textContent=textDesencriptado;
     textArea.value = "";
+    mensaje.style.backgroundImage="none";
 }
 
 function encriptar(stringEncriptado){
@@ -43,8 +45,12 @@ function desencriptar(stringDesencriptado){
     return stringDesencriptado
 }
 const btnCopiar=document.querySelector(".btn-copiar");
-    btnCopiar.addEventListener("click", copiar = ()=>{
-        var contenido = document.querySelector(".texto-resultado").textContent;
-        navigator.clipboard.writeText(contenido);
-        console.log("Hola");
-    })
+    btnCopiar.addEventListener("click", ()=>{
+        var contenido =mensaje.value;
+        navigator.clipboard.writeText(contenido).then(()=>{
+            console.log("Texto copiado:" , contenido);
+        }).catch(err =>{
+            console.error("Error al copiar el texto", err);
+        });
+        
+    });
